@@ -38,6 +38,16 @@ public class AppImpl implements App{
 		return dao.getNumeroRegistros();
 	}
 
+	@Override
+	public Integer getId(Pregunta pregunta) {
+		return bi.getId(pregunta);
+	}
 
+	@Override
+	public String getExplicacion(Pregunta pregunta) {
+		return bi.getExplicacion(pregunta);
+	}
+
+	
 	
 }

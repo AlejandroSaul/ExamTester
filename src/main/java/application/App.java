@@ -14,4 +14,8 @@ public interface App {
 	public String getRespuesta(Pregunta pregunta);
 	
 	public Integer getNumeroRegistros();
+	
+	public Integer getId(Pregunta pregunta);
+	
+	public String getExplicacion(Pregunta pregunta);
 }

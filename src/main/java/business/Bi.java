@@ -13,4 +13,8 @@ public interface Bi {
 	
 	public String getRespuesta(Pregunta pregunta);
 	
+	public Integer getId(Pregunta pregunta);
+	
+	public String getExplicacion(Pregunta pregunta);
+	
 }

@@ -8,4 +8,5 @@ public interface ExamenDAO {
 	public Pregunta buscarPreguntaById(Integer id);
 	
 	public Integer getNumeroRegistros();
+	
 }

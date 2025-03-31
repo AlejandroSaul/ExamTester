@@ -36,6 +36,16 @@ public class BiImpl implements Bi{
 	public String getRespuesta(Pregunta pregunta) {
 		return pregunta.getRespuestaCorrecta();
 	}
+
+	@Override
+	public Integer getId(Pregunta pregunta) {
+		return pregunta.getIdPregunta();
+	}
+
+	@Override
+	public String getExplicacion(Pregunta pregunta) {
+		return pregunta.getExplicacion();
+	}
 	
 	
 

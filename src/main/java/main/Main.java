@@ -11,7 +11,6 @@ import entidad.Pregunta;
 public class Main {
 	
 	static App app = new AppImpl();
-
 	public static void main(String[] args) {
 		boolean bandera = true;
 		List<String> respuestas= null;
@@ -23,6 +22,8 @@ public class Main {
 		Scanner escan = new Scanner(System.in);
 		String comprobar = null;
 		String respuesta = null;
+		Integer id = null;
+		String explicacion =null;
 
 		System.out.println("***********************************");
 		System.out.println("*********EXAM TESTER 0.1.0*********");
@@ -36,12 +37,21 @@ public class Main {
 			question = app.getQuestinamiento(pregunta);
 			respuestas = app.getRespuestasPosibles(pregunta);
 			respuesta = app.getRespuesta(pregunta);
-			System.out.println(question);
+			id = app.getId(pregunta);
+			if(app.getExplicacion(pregunta)!=null) {
+				explicacion = app.getExplicacion(pregunta);
+			}
+			
+			System.out.println(id+".-"+question);
 			for(String respuestaPosible : respuestas) {
 				System.out.println(respuestaPosible);
 			}
 			comprobar = escan.nextLine();
-			System.out.println(respuesta.equals(comprobar.toUpperCase())? "correcto":"incorrecto");
+			if(explicacion != null) {
+				System.out.println(respuesta.equals(comprobar.toUpperCase())? "correcto":"incorrecto la respuesta correcta es: "+respuesta+"\nExplicacion:"+explicacion);
+			} else {
+				System.out.println(respuesta.equals(comprobar.toUpperCase())? "correcto":"incorrecto la respuesta correcta es: "+respuesta);
+			}
 		}
 		
 	}

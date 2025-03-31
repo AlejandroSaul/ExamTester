@@ -52,7 +52,7 @@ public class ExamenDAOImpl implements ExamenDAO {
 		}
 		return pregunta;
 	}
-	
+	@Override
 	public Integer getNumeroRegistros() {
 		PreparedStatement ps=null;
 		ResultSet rs = null;
@@ -71,6 +71,8 @@ public class ExamenDAOImpl implements ExamenDAO {
 		}
 		return resultado;
 	}
+	
+	
 
 
 }
