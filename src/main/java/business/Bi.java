@@ -1,6 +1,7 @@
 package business;
 
 import java.util.List;
+import java.util.Map;
 
 import entidad.Pregunta;
 
@@ -16,5 +17,7 @@ public interface Bi {
 	public Integer getId(Pregunta pregunta);
 	
 	public String getExplicacion(Pregunta pregunta);
+	
+	public Map<Integer,String> getTemas();
 	
 }

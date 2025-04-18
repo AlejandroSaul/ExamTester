@@ -1,6 +1,7 @@
 package application;
 
 import java.util.List;
+import java.util.Map;
 
 import business.Bi;
 import business.BiImpl;
@@ -48,6 +49,22 @@ public class AppImpl implements App{
 		return bi.getExplicacion(pregunta);
 	}
 
+	@Override
+	public Map<Integer,String> getTemas(){
+		return bi.getTemas();
+	}
+
+	@Override
+	public Map<Integer, String> getSubtemas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Integer> getPreguntasSubtemaActivo() {
+		return dao.getPreguntasSubtemaActivo();
+	}
+	
 	
 	
 }

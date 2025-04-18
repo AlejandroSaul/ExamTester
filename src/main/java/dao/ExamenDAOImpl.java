@@ -3,6 +3,10 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import connection.ExamTesterConnection;
 import constantes.ConstantesTester;
@@ -36,7 +40,7 @@ public class ExamenDAOImpl implements ExamenDAO {
 					pregunta.setRespuestaD(rs.getString(ConstantesTester.CONST_RESPUESTA_D));
 					pregunta.setRespuestaCorrecta(rs.getString(ConstantesTester.CONST_RESPUESTA_CORRECTA));
 					pregunta.setExplicacion(rs.getString(ConstantesTester.CONST_EXPLICACION));
-//					System.out.println(pregunta.toString());
+					//					System.out.println(pregunta.toString());
 				}
 			}
 		} catch (Exception e) {
@@ -52,6 +56,7 @@ public class ExamenDAOImpl implements ExamenDAO {
 		}
 		return pregunta;
 	}
+
 	@Override
 	public Integer getNumeroRegistros() {
 		PreparedStatement ps=null;
@@ -71,8 +76,72 @@ public class ExamenDAOImpl implements ExamenDAO {
 		}
 		return resultado;
 	}
-	
-	
 
+	@Override
+	public Map<Integer, String> getTemas() {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = ExamTesterConnection.getConexion();
+		String sql = QuerysTester.QUERY_GET_TEMAS;
+		Map<Integer,String> resultado = new HashMap<Integer, String>();
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();	
+			if(ps != null) {
+				while(rs.next()) {									
+					int idTema = rs.getInt("ID_TEMA");
+					String tema = rs.getString("NOMBRE_TEMA");
+					resultado.put(idTema, tema);
+				}
+			}
+		}catch(Exception e) {
+			System.out.println("Error al consultar los temas: "+e);
+		}
+		return resultado;
+	}
+
+	@Override
+	public Map<Integer, String> getSubtemas() {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = ExamTesterConnection.getConexion();
+		Map<Integer, String> resultado = new HashMap<Integer, String>();
+		try {
+			ps = con.prepareStatement(QuerysTester.QUERY_GET_SUBTEMAS);
+			rs = ps.executeQuery();
+			if(rs != null) {
+				while(rs.next()) {
+					int idSubTema = rs.getInt("ID_SUBTEMA");
+					String subtema  = rs.getString("NOMBRE_SUBTEMA");
+					resultado.put(idSubTema, subtema);
+				}
+			}
+		}catch(Exception e) {
+			System.out.println("Error al conlsultar los subtemas "+e);
+		}
+		
+		return resultado;
+	}
+	
+	public List<Integer> getPreguntasSubtemaActivo(){
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = ExamTesterConnection.getConexion();
+		List<Integer> resultado = new ArrayList<Integer>();
+		try {
+			ps = con.prepareStatement(QuerysTester.QUERY_GET_SUBTEMA_ACTIVO);
+			rs = ps.executeQuery();
+			if(rs != null) {
+				while(rs.next()) {
+					int idSubTema = rs.getInt("ID_PREGUNTA");
+					resultado.add(idSubTema);
+				}
+			}
+		}catch(Exception e) {
+			System.out.println("Error al conlsultar los subtemas "+e);
+		}
+		
+		return resultado;
+	}
 
 }

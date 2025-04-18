@@ -1,6 +1,7 @@
 package application;
 
 import java.util.List;
+import java.util.Map;
 
 import entidad.Pregunta;
 
@@ -18,4 +19,10 @@ public interface App {
 	public Integer getId(Pregunta pregunta);
 	
 	public String getExplicacion(Pregunta pregunta);
+	
+	public Map<Integer,String> getTemas();
+	
+	public Map<Integer,String> getSubtemas();
+	
+	public List<Integer> getPreguntasSubtemaActivo();
 }

@@ -2,6 +2,7 @@ package business;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import dao.ExamenDAO;
 import dao.ExamenDAOImpl;
@@ -47,6 +48,10 @@ public class BiImpl implements Bi{
 		return pregunta.getExplicacion();
 	}
 	
-	
+	@Override
+	public Map<Integer,String> getTemas(){
+		Map<Integer,String> temas = examenDAO.getTemas();
+		return temas;
+	}
 
 }

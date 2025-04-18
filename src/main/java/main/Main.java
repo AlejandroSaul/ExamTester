@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ import application.AppImpl;
 import entidad.Pregunta;
 
 public class Main {
-	
+
 	static App app = new AppImpl();
 	public static void main(String[] args) {
 		boolean bandera = true;
@@ -24,16 +25,19 @@ public class Main {
 		String respuesta = null;
 		Integer id = null;
 		String explicacion =null;
+		String seleccion = null;
+		Integer seleccionInt = null;
+		List<Integer> listaPreguntas = new ArrayList<Integer>();
+		List <String> Temas = new ArrayList<String>();
 
 		System.out.println("***********************************");
 		System.out.println("*********EXAM TESTER 0.1.0*********");
 		System.out.println("***********************************");
-		System.out.println("Se ejecutara el examen de un total de registros de:");
-		System.out.println(app.getNumeroRegistros());
-		
-		while(bandera) {
-			aleatorio = random.nextInt(numRegistros)+1;
-			pregunta = app.getPregunta(aleatorio);
+		//		System.out.println("Se ejecutara el examen de un total de registros de:");
+		//		System.out.println(app.getNumeroRegistros());
+		listaPreguntas = app.getPreguntasSubtemaActivo();
+		for(Integer inte: listaPreguntas) {
+			pregunta = app.getPregunta(inte);
 			question = app.getQuestinamiento(pregunta);
 			respuestas = app.getRespuestasPosibles(pregunta);
 			respuesta = app.getRespuesta(pregunta);
@@ -41,7 +45,7 @@ public class Main {
 			if(app.getExplicacion(pregunta)!=null) {
 				explicacion = app.getExplicacion(pregunta);
 			}
-			
+
 			System.out.println(id+".-"+question);
 			for(String respuestaPosible : respuestas) {
 				System.out.println(respuestaPosible);
@@ -53,7 +57,5 @@ public class Main {
 				System.out.println(respuesta.equals(comprobar.toUpperCase())? "correcto":"incorrecto la respuesta correcta es: "+respuesta);
 			}
 		}
-		
 	}
-
 }
